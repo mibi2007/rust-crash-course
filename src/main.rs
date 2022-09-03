@@ -12,9 +12,9 @@ fn call_api_one() -> impl Future<Output = String> {
 
 fn call_api_two() -> impl Future<Output = String> {
     let name = "John".to_owned();
-    async {
+    async move {
         sleep(Duration::from_secs(1)).await;
-        "Two".to_owned()
+        format!("{} Doe", name)
     }
 }
 
