@@ -1,17 +1,18 @@
 #![deny(clippy::all)]
 use std::io;
 
-fn main() -> io::Result<()> {
-    let mut input_buffer = String::new();
-    let mut char_buffer = String::new();
-    println!("Input: ");
-    io::stdin().read_line(&mut input_buffer).unwrap();
-    println!("Char to extract: ");
-    io::stdin().read_line(&mut char_buffer).unwrap();
-    let trim = trim(&input_buffer, &char_buffer);
-    println!("Identical count {}", trim.0);
-    println!("New string {}", trim.1);
-    Ok(())
+fn main() {
+    loop {
+        let mut input_buffer = String::new();
+        println!("Input: ");
+        let mut char_buffer = String::new();
+        io::stdin().read_line(&mut input_buffer).unwrap();
+        println!("Char to extract: ");
+        io::stdin().read_line(&mut char_buffer).unwrap();
+        let trim = trim(&input_buffer, &char_buffer);
+        println!("Identical count {}", trim.0);
+        println!("New string {}", trim.1);
+    }
 }
 
 fn trim(input: &str, char: &str) -> (i32, String) {
