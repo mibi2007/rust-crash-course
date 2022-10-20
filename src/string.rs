@@ -9,14 +9,23 @@ fn main() -> io::Result<()> {
     println!("Char to extract: ");
     io::stdin().read_line(&mut char_buffer).unwrap();
     let trim = trim(&input_buffer, &char_buffer);
-    println!("{} {}", trim.0, trim.1);
+    println!("Identical count {}", trim.0);
+    println!("New string {}", trim.1);
     Ok(())
 }
 
-fn trim(input: &str, char: &str) -> (i32, &'static str) {
-    let char = char.chars().last().unwrap();
+fn trim(input: &str, char: &str) -> (i32, String) {
+    let char = char.chars().nth(0).unwrap();
     println!("Char: {}", char);
-    let new_str = String::new();
+    let mut new_str = String::new();
+    let mut identical_count = 0;
+    for input_char in input.chars() {
+        if input_char == char || input_char == char.to_uppercase().nth(0).unwrap() {
+            identical_count += 1;
+        } else {
+            new_str.push(input_char)
+        }
+    }
 
-    return (3, "aaa".clone());
+    return (identical_count, new_str);
 }
